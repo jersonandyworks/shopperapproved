@@ -1,0 +1,104 @@
+<script type="text/javascript">
+ShopifyApp.ready(function(){
+ShopifyApp.Bar.initialize({
+title: "Home",
+icon: "<%= asset_path('faveicon.png') %>"
+});
+});
+</script>
+<!-- <div class="container-fluid">
+  <div class="row">
+    <div class="col-md-4 col-md-offset-4">
+      <center><%= image_tag('salogo.png') %></center>
+      <br>
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <div class="form-group">
+            <ul>
+              <% @scripts.each do |script| %>
+              <li><%= script.id%> <%= script.src %> - <%= link_to("Remove Script", {:action => 'delete', :id => script.id})%></li>
+              <% end %>
+            </ul>
+            <a href="home/new" class="btn btn-success">Add Script</a>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+</div> -->
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-4 col-md-offset-4">
+      
+      <center><%= image_tag('salogo.png') %></center>
+      <br>
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <% if !flash[:notice].blank? %>
+          <!-- START ALERT -->
+          <div class="alert alert-info alert-dismissible" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <%= flash[:notice] %>
+          </div>
+          <!-- END ALERT -->
+          <% end %>
+
+          <!-- START TAB -->
+          <div id="shop-tab">
+            <!-- Nav tabs -->
+            <ul class="nav nav-tabs" role="tablist">
+              <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Generate Script</a></li>
+              <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">How To Add?</a></li>
+              
+            </ul>
+            <!-- Tab panes -->
+            <div class="tab-content">
+              <div role="tabpanel" class="tab-pane active" id="home">
+                <%= form_for(:home,:url => {:action => 'create'}) do |f| %>
+                <p>
+                  <div class="input-group">
+                     <%= f.text_field(:name,:placeholder => "4115035", :class => 'form-control') %>
+                    <span class="input-group-btn">
+                      <%= submit_tag "Add ShopperApproved ID", :id => "submit", :name => "submit", :class => "btn btn-primary" %>
+                    </span>
+                  </div>
+                  
+                </p>
+                <% end %>
+                
+              </div>
+              <div role="tabpanel" class="tab-pane " id="profile">
+                
+                <p>
+                  you can by goin into your shopperapproved account!
+                  
+                </p>
+                
+              </div>
+            </div>
+          </div>
+          <!-- End Tab -->
+         <% if @scripts.count > 0 %>
+          <div class="wells">
+                <table class="table table-condensed">
+                  <tr>
+                    <th>Site ID</th>
+                    <th></th>
+                  </tr>
+                  <% @scripts.each do |script| %>
+                  <tr>
+                    <td><%= script.id %></td>
+                    <td>
+                      <%= link_to('Remove', {:action => 'delete', :id => script.id} , :class => 'btn btn-warning col-md-offset-6') %>
+                      </td>
+                  </tr>
+                  <% end %>
+                </table>
+              </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

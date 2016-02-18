@@ -1,0 +1,23 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-4 col-md-offset-4">
+      <center><%= image_tag('salogo.png') %></center>
+      <br>
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <div class="form-group">
+            <label>Enter ShopperApproved site ID:</label>
+            <%= form_for(:home,:url => {:action => 'create'}) do |f| %>
+                <%= f.text_field(:name,:placeholder => "4115035", :class => 'form-control') %>
+                <%= submit_tag "Add Shopper approved ID", :id => "submit", :name => "submit", :class => "btn btn-primary" %>
+            <% end %>
+            <!-- <input type="text" name="site_id" placeholder="4115035" class="form-control"/>
+            <br>
+            <center><a href="https://shopperapproved.herokuapp.com/script" class="btn btn-success">Add Site ID to Generate Script</a></center> -->
+          </div>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+</div>
